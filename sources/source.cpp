@@ -4,31 +4,32 @@
 #include <ctime>
 #include <iostream>
 
+
 int main() {
   int32_t* array02mb = new int32_t[48 * 1024];
   int32_t* array1mb = new int32_t[256 * 1024];
   int32_t* array2mb = new int32_t[512 * 1024];
   int32_t* array4mb = new int32_t[1024 * 1024];
-
+  unsigned int glob = 1111;
   int32_t* array8mb = new int32_t[2048 * 1024];
   int32_t* array13mb = new int32_t[3456 * 1024];
   for (size_t k = 0; k < 48 * 1024; k++) {
-    array02mb[k] = rand();
+    array02mb[k] = rand_r(&glob);
   }
   for (size_t k = 0; k < 256 * 1024; k++) {
-    array1mb[k] = rand();
+    array1mb[k] = rand_r(&glob);
   }
   for (size_t k = 0; k < 512 * 1024; k++) {
-    array2mb[k] = rand();
+    array2mb[k] = rand_r(&glob);
   }
   for (size_t k = 0; k < 1024 * 1024; k++) {
-    array4mb[k] = rand();
+    array4mb[k] = rand_r(&glob);
   }
   for (size_t k = 0; k < 2048 * 1024; k++) {
-    array8mb[k] = rand();
+    array8mb[k] = rand_r(&glob);
   }
   for (size_t k = 0; k < 3456 * 1024; k++) {
-    array13mb[k] = rand();
+    array13mb[k] = rand_r(&glob);
   }
   int32_t f = 0;
 
@@ -72,12 +73,12 @@ int main() {
 
   // СЛУЧАЙНО
   for (size_t k = 0; k < 48 * 1024; k += 16) {
-    f = array02mb[(rand() % 3072) * 16];
+    f = array02mb[(rand_r(&glob) % 3072) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 48 * 1024; k += 16) {
-      f = array02mb[(rand() % 3072) * 16];
+      f = array02mb[(rand_r(&glob) % 3072) * 16];
     }
   }
   end = std::chrono::system_clock::now();
@@ -124,12 +125,12 @@ int main() {
 
   // СЛУЧАЙНО
   for (size_t k = 0; k < 262144; k += 16) {
-    f = array1mb[(rand() % 16384) * 16];
+    f = array1mb[(rand_r(&glob) % 16384) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 262144; k += 16) {
-      f = array1mb[(rand() % 16384) * 16];
+      f = array1mb[(rand_r(&glob) % 16384) * 16];
     }
   }
   end = std::chrono::system_clock::now();
@@ -177,12 +178,12 @@ int main() {
 
   // СЛУЧАЙНО
   for (size_t k = 0; k < 524288; k += 16) {
-    f = array2mb[(rand() % 32768) * 16];
+    f = array2mb[(rand_r(&glob) % 32768) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 524288; k += 16) {
-      f = array2mb[(rand() % 32768) * 16];
+      f = array2mb[(rand_r(&glob) % 32768) * 16];
     }
   }
   end = std::chrono::system_clock::now();
@@ -230,12 +231,12 @@ int main() {
 
   // СЛУЧАЙНО
   for (size_t k = 0; k < 1048576; k += 16) {
-    f = array4mb[(rand() % 65536) * 16];
+    f = array4mb[(rand_r(&glob) % 65536) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 1048576; k += 16) {
-      f = array4mb[(rand() % 65536) * 16];
+      f = array4mb[(rand_r(&glob) % 65536) * 16];
     }
   }
   end = std::chrono::system_clock::now();
@@ -281,12 +282,12 @@ int main() {
             << std::endl;
   // СЛУЧАЙНО
   for (size_t k = 0; k < 2097152; k += 16) {
-    f = array8mb[(rand() % 131072) * 16];
+    f = array8mb[(rand_r(&glob) % 131072) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 2097152; k += 16) {
-      f = array8mb[(rand() % 131072) * 16];
+      f = array8mb[(rand_r(&glob) % 131072) * 16];
     }
   }
   end = std::chrono::system_clock::now();
@@ -334,12 +335,12 @@ int main() {
   //СЛУЧАЙНО
 
   for (size_t k = 0; k < 3538944; k += 16) {
-    f = array13mb[(rand() % 221184) * 16];
+    f = array13mb[(rand_r(&glob) % 221184) * 16];
   }
   start = std::chrono::system_clock::now();
   for (size_t r = 0; r < 1000; r++) {
     for (size_t k = 0; k < 3538944; k += 16) {
-      f = array13mb[(rand() % 221184) * 16];
+      f = array13mb[(rand_r(&glob) % 221184) * 16];
     }
   }
   end = std::chrono::system_clock::now();
